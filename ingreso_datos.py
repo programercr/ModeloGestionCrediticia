@@ -11,7 +11,7 @@ class Usuario:
         self.telefono = ""
 
     def ingresar_informacion(self):
-        self.documento_id = input("Ingrese el Documento de Identidad: ")
+        self.documento_id = input("Ingrese el Documento de Identificacion: ")
         self.nombre = input("Ingrese el Nombre: ")
         self.apellidos = input("Ingrese sus Apellidos: ")
         self.fecha_nacimiento = input("Ingrese la Fecha de Nacimiento (YYYY-MM-DD): ")
@@ -59,6 +59,8 @@ class Pensionado(Usuario):
     def ingresar_pension(self):
         self.pension = float(input("Ingrese la pensión: "))
         return self.pension
+    
+    
 
 if __name__=="__main__":
 
