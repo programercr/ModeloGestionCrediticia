@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+
 class Usuario:
     def __init__(self):
         self.documento_id = ""

@@ -12,20 +12,8 @@ class AnalisisEndeudamiento:
         self.total_ingresos = calculadora_salarios.calcular_promedio()
 
     def calcular_total_deudas(self):
-        deuda_bancos = deudas_clientes.DeudaBancaria()
-        deuda_bancos.ingresar_deuda()
-
-        deuda_financieras = deudas_clientes.DeudaFinanciera()
-        deuda_financieras.ingresar_deuda()
-
-        deuda_almacenes = deudas_clientes.DeudaAlmacenes()
-        deuda_almacenes.ingresar_deuda()
-
-        self.total_deudas = (
-            deuda_bancos.obtener_monto()
-            + deuda_financieras.obtener_monto()
-            + deuda_almacenes.obtener_monto()
-        )
+        deudas = deudas_clientes()                
+        deudas.clasificacion_deudas()
 
     def calcular_nivel_endeudamiento(self):
         if self.total_ingresos == 0:
