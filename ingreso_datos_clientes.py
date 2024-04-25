@@ -108,7 +108,7 @@ class Pensionado(Usuario):
         super().ingresar_informacion()
         while True:
             try:
-                self.pension = float(input("Ingrese la pensión: "))
+                self.pension = float(input("Ingrese monto de pensión: "))
                 break
             except ValueError:
                 print("Por favor, ingrese un monto válido.")
