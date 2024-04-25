@@ -8,18 +8,23 @@ def tipo_empleo():
 
     opcion = int(input("Ingrese el número correspondiente al tipo de empleado: "))
 
-    if opcion == 1:
-        
+    if opcion == 1:        
         asalariado = Asalariado ()
         asalariado.ingresar_informacion()
         antiguedad = antiguedad_laboral()
         asalariado.obtener_informacion()
         info_usuario = asalariado.obtener_informacion()
-        print(("Información del usuario:", info_usuario,antiguedad))
+        print("Información del usuario:", info_usuario,antiguedad)
     elif opcion == 2:
-        return "Independiente"
+        independiente = Independiente()
+        independiente.ingresar_informacion()        
+        info_usuario = independiente.obtener_informacion()
+        print("Información del usuario:", info_usuario)
     elif opcion == 3:
-        return "Pensionado"
+        pensionado = Pensionado()
+        pensionado.ingresar_informacion()
+        info_usuario = pensionado.obtener_informacion()
+        print("Información del usuario:", info_usuario)
     else:
         print("Opción inválida. Por favor, seleccione una opción válida.")
         return tipo_empleo()
