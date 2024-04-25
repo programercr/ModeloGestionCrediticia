@@ -72,33 +72,6 @@ class Pensionado(Usuario):
         return info_padre + (self.pension, self.tipo_empleado)
     
     
-
-def menu_ingreso_datos():
-    while True:
-        print("Seleccione el tipo de ingreso:")
-        print("1. Asalariado")
-        print("2. Independiente")
-        print("3. Pensionado")
-        opcion = input("Ingrese su opción (1, 2 o 3): ")
-        usuario = None
-
-        if opcion == '1':
-            usuario = Asalariado()
-        elif opcion == '2':
-            usuario = Independiente()
-        elif opcion == '3':
-            usuario = Pensionado()
-        else:
-            print("Opción inválida. Por favor, ingrese una opción válida.")
-            continue
-
-        if usuario:
-            usuario.ingresar_informacion()
-            return usuario 
-
 if __name__ == "__main__":
-    usuario = menu_ingreso_datos()
-    if usuario:
-        info_usuario = usuario.obtener_informacion()
-        print("Información del usuario:", info_usuario)
+    pass
 

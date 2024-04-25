@@ -12,8 +12,10 @@ def tipo_empleo():
         
         asalariado = Asalariado ()
         asalariado.ingresar_informacion()
-        asalariado.datos_asalariado()
-        antiguedad_laboral()
+        antiguedad = antiguedad_laboral()
+        asalariado.obtener_informacion()
+        info_usuario = asalariado.obtener_informacion()
+        print(("Información del usuario:", info_usuario,antiguedad))
     elif opcion == 2:
         return "Independiente"
     elif opcion == 3:
@@ -45,10 +47,4 @@ def antiguedad_laboral():
         return antiguedad_laboral()
 
 if __name__=="__main__":
-    # Usar funsion tipo empleado 
-    # tipo_empleo = tipo_empleo()
-    # print("Tipo de empleo seleccionado:", tipo_empleo)
-    # Usar  función antguedad 
-    # print("Antigüedad laboral seleccionada:", antiguedad_laboral)
-
     tipo_empleo ()
