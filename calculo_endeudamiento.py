@@ -1,45 +1,43 @@
 import informe_ingresos
 import deudas_clientes
 
+class AnalisisEndeudamiento:
+    def __init__(self):
+        self.total_ingresos = 0
+        self.total_deudas = 0
 
-# Crear una instancia de la clase CalculadoraSalarios
-calculadora_salarios = informe_ingresos.CalculadoraSalarios()
+    def calcular_total_ingresos(self):
+        calculadora_salarios = informe_ingresos.CalculadoraSalarios()
+        calculadora_salarios.ingresar_salarios()
+        self.total_ingresos = calculadora_salarios.calcular_promedio()
 
-# Ingresar los salarios
-calculadora_salarios.ingresar_salarios()
+    def calcular_total_deudas(self):
+        deuda_bancos = deudas_clientes.DeudaBancaria()
+        deuda_bancos.ingresar_deuda()
 
-# Calcular el salario promedio
-salario_promedio = calculadora_salarios.calcular_promedio()
+        deuda_financieras = deudas_clientes.DeudaFinanciera()
+        deuda_financieras.ingresar_deuda()
 
-# Guardar el salario promedio en una variable
-total_ingresos = salario_promedio
+        deuda_almacenes = deudas_clientes.DeudaAlmacenes()
+        deuda_almacenes.ingresar_deuda()
 
-print(f'Calculo salario es: {total_ingresos}')
+        self.total_deudas = (
+            deuda_bancos.obtener_monto()
+            + deuda_financieras.obtener_monto()
+            + deuda_almacenes.obtener_monto()
+        )
 
+    def calcular_nivel_endeudamiento(self):
+        if self.total_ingresos == 0:
+            print("No se puede calcular el nivel de endeudamiento porque el total de ingresos es cero.")
+            return
+        nivel_endeudamiento = self.total_deudas / self.total_ingresos
+        return nivel_endeudamiento
 
-# Crear instancias de las clases DeudaBancaria, DeudaFinanciera y DeudaAlmacenes
-deuda_bancos = deudas_clientes.DeudaBancaria()
-deuda_financieras = deudas_clientes.DeudaFinanciera()
-deuda_almacenes = deudas_clientes.DeudaAlmacenes()
-
-# Ingresar las deudas para cada tipo
-deuda_bancos.ingresar_deuda()
-deuda_financieras.ingresar_deuda()
-deuda_almacenes.ingresar_deuda()
-
-# Obtener el total de las deudas sumando las deudas de cada tipo
-total_deudas = (
-    deuda_bancos.obtener_monto()
-    + deuda_financieras.obtener_monto()
-    + deuda_almacenes.obtener_monto()
-)
-
-# Mostrar el total de las deudas
-print("Total deudas:", total_deudas)
-
-
-# Calcular el nivel de endeudamiento
-nivel_endeudamiento = total_deudas / total_ingresos
-
-# Mostrar el nivel de endeudamiento
-print(f'Nivel de endeudamiento: {nivel_endeudamiento:.2f}')
+if __name__ == "__main__":
+    analisis = AnalisisEndeudamiento()
+    analisis.calcular_total_ingresos()
+    analisis.calcular_total_deudas()
+    nivel_endeudamiento = analisis.calcular_nivel_endeudamiento()
+    if nivel_endeudamiento is not None:
+        print(f'Nivel de endeudamiento: {nivel_endeudamiento:.2f}')
