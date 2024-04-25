@@ -1,62 +1,67 @@
 class Deuda:
     def __init__(self):
         self.monto = 0
+        self.cantidad_deudas = 0
 
-    def ingresar_deuda(self):
+    def ingresar_deuda(self, tipo_deuda):
         while True:
             try:
-                monto = float(input("Ingrese el monto de la deuda: "))
-                if monto < 0:
-                    print("Por favor, ingrese un monto válido.")
+                cantidad_deudas = int(input(f"¿Cuántas deudas {tipo_deuda} tienes?: "))
+                if cantidad_deudas <= 0:
+                    print("Por favor, ingresa un número válido mayor que cero.")
                 else:
-                    self.monto = monto
+                    total_deuda = 0
+                    for i in range(1, cantidad_deudas + 1):
+                        while True:
+                            try:
+                                monto = float(input(f"Ingrese el monto de la deuda {tipo_deuda} #{i}: "))
+                                if monto <= 0:
+                                    print("Por favor, ingresa un monto válido mayor que cero.")
+                                else:
+                                    total_deuda += monto
+                                    break
+                            except ValueError:
+                                print("Por favor, ingresa un monto válido.")
+                    self.monto += total_deuda
+                    self.cantidad_deudas += cantidad_deudas
                     break
             except ValueError:
-                print("Por favor, ingrese un monto válido.")
-
-    def obtener_monto(self):
-        return self.monto
+                print("Por favor, ingresa un número válido.")
 
 
-class DeudaBancaria(Deuda):
-    def __init__(self):
-        super().__init__()
-
-
-class DeudaFinanciera(Deuda):
-    def __init__(self):
-        super().__init__()
-
-
-class DeudaAlmacenes(Deuda):
-    def __init__(self):
-        super().__init__()
+def obtener_respuesta(pregunta):
+    while True:
+        respuesta = input(pregunta).lower()
+        if respuesta == "si" or respuesta == "no":
+            return respuesta
+        else:
+            print("Por favor, ingresa 'si' o 'no'.")
 
 
 if __name__ == "__main__":
-    tiene_deudas = input("¿Tiene deudas? (si/no): ").lower() == "si"
+    tiene_deudas = obtener_respuesta("¿Tienes deudas con otras entidades? (si/no): ")
 
-    if tiene_deudas:
-        deuda_bancos = DeudaBancaria()
-        deuda_bancos.ingresar_deuda()
+    if tiene_deudas == "si":
+        deuda = Deuda()
 
-        deuda_financieras = DeudaFinanciera()
-        deuda_financieras.ingresar_deuda()
+        tiene_bancarias = obtener_respuesta("¿Tienes deudas bancarias? (si/no): ")
+        if tiene_bancarias == "si":
+            deuda.ingresar_deuda("bancarias")
 
-        deuda_almacenes = DeudaAlmacenes()
-        deuda_almacenes.ingresar_deuda()
+        tiene_financieras = obtener_respuesta("¿Tienes deudas financieras? (si/no): ")
+        if tiene_financieras == "si":
+            deuda.ingresar_deuda("financieras")
 
-        total_general = (
-            deuda_bancos.obtener_monto()
-            + deuda_financieras.obtener_monto()
-            + deuda_almacenes.obtener_monto()
-        )
+        tiene_almacenes = obtener_respuesta("¿Tienes deudas con almacenes? (si/no): ")
+        if tiene_almacenes == "si":
+            deuda.ingresar_deuda("con almacenes")
 
-        print("\nDeuda con otros bancos:", deuda_bancos.obtener_monto())
-        print("Deuda con financieras:", deuda_financieras.obtener_monto())
-        print("Deuda con almacenes:", deuda_almacenes.obtener_monto())
-        print("Total general de deudas:", total_general)
+        total_general = deuda.monto
+
+        if total_general > 0:
+            print("El total general de tus deudas es:", total_general)
+            print("La cantidad total de deudas es:", deuda.cantidad_deudas)
+        else:
+            print("No tienes deudas. El total de deudas es cero.")
     else:
-        print("No tiene deudas. El total de deudas es cero.")
-
-
+        print("No tienes deudas. El total de deudas es cero.")
