@@ -1,4 +1,4 @@
-from ingreso_datos import *
+from ingreso_datos_clientes import *
 
 def tipo_empleo():
     print("Seleccione el tipo de empleo:")
