@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class Usuario:
     def __init__(self):
@@ -11,89 +11,72 @@ class Usuario:
         self.correo_electronico = ""
         self.telefono = ""
 
-    def ingresar_documento_id(self):
+    def ingresar_informacion(self):
         while True:
-            documento_id = input("Ingrese el Documento de Identificación: ")
-            if documento_id.isdigit() and len(documento_id) == 9:
-                self.documento_id = documento_id
-                break
-            else:
+            self.documento_id = input("Ingrese el Documento de Identificación: ")
+            if not self.documento_id.isdigit() or len(self.documento_id) != 9:
                 print("Por favor, ingrese un documento de identificación válido con 9 dígitos.")
+            else:
+                break
 
-    def ingresar_nombre(self):
-        nombre = input("Ingrese el Nombre: ")
-        while not nombre.isalpha():
+        self.nombre = input("Ingrese el Nombre: ")
+        while not self.nombre.isalpha():
             print("El nombre solo puede contener letras.")
-            nombre = input("Ingrese el Nombre: ")
-        self.nombre = nombre
+            self.nombre = input("Ingrese el Nombre: ")
 
-    def ingresar_apellidos(self):
-        apellidos = input("Ingrese sus Apellidos: ")
-        while not apellidos.replace(" ", "").isalnum():
+        self.apellidos = input("Ingrese sus Apellidos: ")
+        while not self.apellidos.replace(" ", "").isalnum():
             print("Los apellidos solo pueden contener caracteres alfanuméricos y espacios.")
-            apellidos = input("Ingrese sus Apellidos: ")
-        self.apellidos = apellidos
+            self.apellidos = input("Ingrese sus Apellidos: ")
 
-    def ingresar_fecha_nacimiento(self):
         while True:
-            fecha_nacimiento = input("Ingrese la Fecha de Nacimiento (YYYY-MM-DD): ")
+            self.fecha_nacimiento = input("Ingrese la Fecha de Nacimiento (YYYY-MM-DD): ")
             try:
-                fecha = datetime.strptime(fecha_nacimiento, "%Y-%m-%d")
-                if 1924 <= fecha.year <= 2006 and 1 <= fecha.month <= 12 and 1 <= fecha.day <= 31:
-                    self.fecha_nacimiento = fecha_nacimiento
-                    if fecha.year > 2006:
-                        print("Menor de edad no sujeto a crédito.")
-                    break
+                fecha_nacimiento = datetime.strptime(self.fecha_nacimiento, "%Y-%m-%d")
+                if datetime.now() - fecha_nacimiento < timedelta(days=365*18):
+                    print("Debe ser mayor de 18 años para registrarse.")
                 else:
-                    print("Ingrese una fecha válida (YYYY-MM-DD) dentro del rango permitido.")
+                    break
             except ValueError:
-                print("Por favor, ingrese una fecha en el formato correcto (YYYY-MM-DD).")
+                print("Por favor, ingrese una fecha válida en el formato especificado.")
 
-    def ingresar_estado_civil(self):
         self.estado_civil = input("Ingrese el Estado Civil: ")
 
-    def ingresar_provincia(self):
         provincias_validas = ["cartago", "limon", "san jose", "heredia", "guanacaste", "alajuela", "puntarenas"]
         while True:
-            provincia = input("Ingresar Provincia: ").lower()
-            if provincia in provincias_validas:
-                self.provincia = provincia
-                break
-            else:
+            self.provincia = input("Ingresar Provincia: ")
+            if self.provincia.lower() not in provincias_validas:
                 print("Provincia inválida. Por favor, ingrese una provincia válida.")
+            else:
+                break
 
-    def ingresar_correo_electronico(self):
         self.correo_electronico = input("Ingrese el Correo Electrónico: ")
 
-    def ingresar_telefono(self):
         while True:
-            telefono = input("Ingrese Teléfono: ")
-            if telefono.isdigit() and len(telefono) == 8:
-                self.telefono = telefono
-                break
-            else:
+            self.telefono = input("Ingrese Teléfono: ")
+            if not self.telefono.isdigit() or len(self.telefono) != 8:
                 print("Por favor, ingrese un número de teléfono válido con 8 dígitos.")
+            else:
+                break
 
     def obtener_informacion(self):
         return (self.documento_id, self.nombre, self.apellidos, self.fecha_nacimiento,
                 self.estado_civil, self.provincia, self.correo_electronico, self.telefono)
 
 
-class Empleado(Usuario):
-    def __init__(self, tipo_empleado):
+
+class Asalariado(Usuario):
+    def __init__(self):
         super().__init__()
-        self.tipo_empleado = tipo_empleado
+        self.tipo_empleado = "Asalariado"
         self.salario = 0
         self.empleador = ""
         self.puesto = ""
 
-    def ingresar_empleador(self):
+    def ingresar_informacion(self):
+        super().ingresar_informacion()
         self.empleador = input("Ingrese su empleador: ")
-
-    def ingresar_puesto(self):
         self.puesto = input("Ingrese su puesto: ")
-
-    def ingresar_salario(self):
         while True:
             try:
                 self.salario = float(input("Ingrese el salario: "))
@@ -106,38 +89,24 @@ class Empleado(Usuario):
         return info_padre + (self.empleador, self.puesto, self.salario, self.tipo_empleado)
 
 
-class Asalariado(Empleado):
+class Independiente(Usuario):
     def __init__(self):
-        super().__init__("Asalariado")
+        super().__init__()
+        self.tipo_empleado = "Independiente"
+        self.ingresos_mensuales = 0
 
     def ingresar_informacion(self):
-        super().ingresar_documento_id()
-        super().ingresar_nombre()
-        super().ingresar_apellidos()
-        super().ingresar_fecha_nacimiento()
-        super().ingresar_estado_civil()
-        super().ingresar_provincia()
-        super().ingresar_correo_electronico()
-        super().ingresar_telefono()
-        super().ingresar_empleador()
-        super().ingresar_puesto()
-        super().ingresar_salario()
+        super().ingresar_informacion()
+        while True:
+            try:
+                self.ingresos_mensuales = float(input("Ingrese los ingresos mensuales: "))
+                break
+            except ValueError:
+                print("Por favor, ingrese un monto válido.")
 
-
-class Independiente(Empleado):
-    def __init__(self):
-        super().__init__("Independiente")
-
-    def ingresar_informacion(self):
-        super().ingresar_documento_id()
-        super().ingresar_nombre()
-        super().ingresar_apellidos()
-        super().ingresar_fecha_nacimiento()
-        super().ingresar_estado_civil()
-        super().ingresar_provincia()
-        super().ingresar_correo_electronico()
-        super().ingresar_telefono()
-        super().ingresar_salario()
+    def obtener_informacion(self):
+        info_padre = super().obtener_informacion()
+        return info_padre + (self.ingresos_mensuales, self.tipo_empleado)
 
 
 class Pensionado(Usuario):
@@ -146,24 +115,14 @@ class Pensionado(Usuario):
         self.tipo_empleado = "Pensionado"
         self.pension = 0
 
-    def ingresar_pension(self):
+    def ingresar_informacion(self):
+        super().ingresar_informacion()
         while True:
             try:
                 self.pension = float(input("Ingrese monto de pensión: "))
                 break
             except ValueError:
                 print("Por favor, ingrese un monto válido.")
-
-    def ingresar_informacion(self):
-        super().ingresar_documento_id()
-        super().ingresar_nombre()
-        super().ingresar_apellidos()
-        super().ingresar_fecha_nacimiento()
-        super().ingresar_estado_civil()
-        super().ingresar_provincia()
-        super().ingresar_correo_electronico()
-        super().ingresar_telefono()
-        self.ingresar_pension()
 
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
