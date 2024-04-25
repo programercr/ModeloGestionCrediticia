@@ -3,10 +3,15 @@ class CalculadoraSalarios:
         self.salarios = []
 
     def ingresar_salarios(self):
-        cantidad_salarios = int(input("Ingrese la cantidad de salarios a ingresar (entre 3 y 12): "))
-        while cantidad_salarios < 3 or cantidad_salarios > 12:
-            print("Debe ingresar entre 3 y 12 salarios.")
-            cantidad_salarios = int(input("Ingrese la cantidad de salarios a ingresar (entre 3 y 12): "))
+        while True:
+            try:
+                cantidad_salarios = int(input("Ingrese la cantidad de salarios a ingresar (entre 3 y 12): "))
+                if 3 <= cantidad_salarios <= 12:
+                    break  # Sale del bucle si la cantidad es válida
+                else:
+                    print("Debe ingresar entre 3 y 12 salarios.")
+            except ValueError:
+                print("Ingrese un valor numérico válido.")
 
         for i in range(cantidad_salarios):
             salario = self.validar_input("Ingresar salario {}: ".format(i + 1))
@@ -37,4 +42,3 @@ if __name__ == "__main__":
     promedio_salarios = calculadora.calcular_promedio()
     if promedio_salarios is not None:
         print("Salario Promedio:", promedio_salarios)
-
