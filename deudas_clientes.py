@@ -37,8 +37,8 @@ def obtener_respuesta(pregunta):
         else:
             print("Por favor, ingresa 'si' o 'no'.")
 
-
-if __name__ == "__main__":
+def clasificacion_deudas():
+        
     tiene_deudas = obtener_respuesta("¿Tienes deudas con financieras,prestamistas o almacenes? (si/no): ")
 
     if tiene_deudas == "si":
@@ -65,3 +65,7 @@ if __name__ == "__main__":
             print("No tienes deudas. El total de deudas es cero.")
     else:
         print("No tienes deudas. El total de deudas es cero.")
+
+
+if __name__ == "__main__":
+    clasificacion_deudas()
