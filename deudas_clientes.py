@@ -39,20 +39,20 @@ def obtener_respuesta(pregunta):
 
 
 if __name__ == "__main__":
-    tiene_deudas = obtener_respuesta("¿Tienes deudas con otras entidades? (si/no): ")
+    tiene_deudas = obtener_respuesta("¿Tienes deudas con financieras,prestamistas o almacenes? (si/no): ")
 
     if tiene_deudas == "si":
         deuda = Deuda()
 
-        tiene_bancarias = obtener_respuesta("¿Tienes deudas bancarias? (si/no): ")
+        tiene_bancarias = obtener_respuesta("¿Sus deudas es con entidades financieras? (si/no): ")
         if tiene_bancarias == "si":
-            deuda.ingresar_deuda("bancarias")
+            deuda.ingresar_deuda("con financieras")
 
-        tiene_financieras = obtener_respuesta("¿Tienes deudas financieras? (si/no): ")
+        tiene_financieras = obtener_respuesta("¿Sus deudas es con prestamistas ? (si/no): ")
         if tiene_financieras == "si":
-            deuda.ingresar_deuda("financieras")
+            deuda.ingresar_deuda("con prestamistas")
 
-        tiene_almacenes = obtener_respuesta("¿Tienes deudas con almacenes? (si/no): ")
+        tiene_almacenes = obtener_respuesta("¿Sus deudas es con almacenes? (si/no): ")
         if tiene_almacenes == "si":
             deuda.ingresar_deuda("con almacenes")
 
