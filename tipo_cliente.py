@@ -6,7 +6,13 @@ def tipo_empleo():
     print("2. Independiente")
     print("3. Pensionado")
 
-    opcion = int(input("Ingrese el número correspondiente al tipo de empleado: "))
+    while True:
+        opcion = input("Ingrese el número correspondiente al tipo de empleado: ")
+        if opcion.isdigit():  # Verifica si la entrada es un número
+            opcion = int(opcion)
+            if opcion in [1, 2, 3]:  # Verifica si la opción está en el rango válido
+                break
+        print("Opción inválida. Por favor, seleccione una opción válida.")
 
     if opcion == 1:        
         asalariado = Asalariado ()
@@ -14,7 +20,7 @@ def tipo_empleo():
         antiguedad = antiguedad_laboral()
         asalariado.obtener_informacion()
         info_usuario = asalariado.obtener_informacion()
-        print("Información del usuario:", info_usuario,antiguedad)
+        print("Información del usuario:", info_usuario, antiguedad)
     elif opcion == 2:
         independiente = Independiente()
         independiente.ingresar_informacion()        
@@ -25,10 +31,6 @@ def tipo_empleo():
         pensionado.ingresar_informacion()
         info_usuario = pensionado.obtener_informacion()
         print("Información del usuario:", info_usuario)
-    else:
-        print("Opción inválida. Por favor, seleccione una opción válida.")
-        return tipo_empleo()
-
 
 def antiguedad_laboral():
     print("Seleccione su antigüedad laboral:")
@@ -37,7 +39,13 @@ def antiguedad_laboral():
     print("3. 6 - 12 meses")
     print("4. Mayor a 12 meses")
 
-    opcion = int(input("Ingrese el número correspondiente a su opción: "))
+    while True:
+        opcion = input("Ingrese el número correspondiente a su opción: ")
+        if opcion.isdigit():  # Verifica si la entrada es un número
+            opcion = int(opcion)
+            if opcion in [1, 2, 3, 4]:  # Verifica si la opción está en el rango válido
+                break
+        print("Opción inválida. Por favor, seleccione una opción válida.")
 
     if opcion == 1:
         return "0 - 3 meses"
@@ -47,9 +55,6 @@ def antiguedad_laboral():
         return "6 - 12 meses"
     elif opcion == 4:
         return "Mayor a 12 meses"
-    else:
-        print("Opción inválida. Por favor, seleccione una opción válida.")
-        return antiguedad_laboral()
 
 if __name__=="__main__":
     tipo_empleo ()
