@@ -1,4 +1,3 @@
-
 class Usuario:
     def __init__(self):
         self.documento_id = ""
@@ -33,11 +32,15 @@ class Asalariado(Usuario):
         self.puesto = ""
     
 
-    def datos_asalariado(self):
+    def ingresar_informacion(self):
+        super().ingresar_informacion()
         self.empleador = input("Ingrese su empleador: ")
         self.puesto = input("Ingrese su puesto: ")
         self.salario = float(input("Ingrese el salario: "))
-        return (self.empleador,self.puesto,self.salario)
+
+    def obtener_informacion(self):
+        info_padre = super().obtener_informacion()
+        return info_padre + (self.empleador, self.puesto, self.salario, self.tipo_empleado)
     
 
 class Independiente(Usuario):
@@ -46,9 +49,13 @@ class Independiente(Usuario):
         self.tipo_empleado = "Independiente"
         self.ingresos_mensuales = 0
 
-    def ingresar_ingresos_mensuales(self):
+    def ingresar_informacion(self):
+        super().ingresar_informacion()
         self.ingresos_mensuales = float(input("Ingrese los ingresos mensuales: "))
-        return self.ingresos_mensuales
+
+    def obtener_informacion(self):
+        info_padre = super().obtener_informacion()
+        return info_padre + (self.ingresos_mensuales, self.tipo_empleado)
 
 class Pensionado(Usuario):
     def __init__(self):
@@ -56,29 +63,42 @@ class Pensionado(Usuario):
         self.tipo_empleado = "Pensionado"
         self.pension = 0
 
-    def ingresar_pension(self):
+    def ingresar_informacion(self):
+        super().ingresar_informacion()
         self.pension = float(input("Ingrese la pensión: "))
-        return self.pension
+
+    def obtener_informacion(self):
+        info_padre = super().obtener_informacion()
+        return info_padre + (self.pension, self.tipo_empleado)
     
     
 
-if __name__=="__main__":
+def menu_ingreso_datos():
+    while True:
+        print("Seleccione el tipo de ingreso:")
+        print("1. Asalariado")
+        print("2. Independiente")
+        print("3. Pensionado")
+        opcion = input("Ingrese su opción (1, 2 o 3): ")
+        usuario = None
 
-    # Ejemplo de uso: 
-    asalariado = Asalariado()
-    asalariado.ingresar_informacion()
-    asalariado.ingresar_salario()
-    informacion_asalariado = asalariado.obtener_informacion()
-    print("Información del usuario asalariado:", informacion_asalariado)
+        if opcion == '1':
+            usuario = Asalariado()
+        elif opcion == '2':
+            usuario = Independiente()
+        elif opcion == '3':
+            usuario = Pensionado()
+        else:
+            print("Opción inválida. Por favor, ingrese una opción válida.")
+            continue
 
-    independiente = Independiente()
-    independiente.ingresar_informacion()
-    independiente.ingresar_ingresos_mensuales()
-    informacion_independiente = independiente.obtener_informacion()
-    print("Información del usuario independiente:", informacion_independiente)
+        if usuario:
+            usuario.ingresar_informacion()
+            return usuario 
 
-    pensionado = Pensionado()
-    pensionado.ingresar_informacion()
-    pensionado.ingresar_pension()
-    informacion_pensionado = pensionado.obtener_informacion()
-    print("Información del usuario pensionado:", informacion_pensionado)
+if __name__ == "__main__":
+    usuario = menu_ingreso_datos()
+    if usuario:
+        info_usuario = usuario.obtener_informacion()
+        print("Información del usuario:", info_usuario)
+
