@@ -76,6 +76,7 @@ class Asalariado(Usuario):
         self.ingresos = 0
         self.deudas = 0
         self.antiguedadLaboral = ''
+        self.nivel_Endeudamiento = 0
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
@@ -98,12 +99,15 @@ class Asalariado(Usuario):
         print('Ahora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
+        self.nivel_Endeudamiento = self.deudas/self.ingresos
+        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento*100),0)}%')
     
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.empleador, self.puesto, self.salario, self.tipo_empleado,self.antiguedadLaboral, self.ingresos, self.deudas)
+        return info_padre + (self.empleador, self.puesto, self.salario, self.tipo_empleado,self.antiguedadLaboral, self.ingresos, self.deudas,self.nivel_Endeudamiento)
 
 class Independiente(Usuario):
+
     def __init__(self):
         super().__init__()
         self.tipo_empleado = "Independiente"
