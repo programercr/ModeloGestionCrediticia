@@ -2,7 +2,7 @@ class CalculadoraIngresos:
     def __init__(self):
         self.salarios = []
 
-    def ingresar_salarios(self):
+    def registrar_ingresos(self):
         while True:
             try:
                 cantidad_salarios = int(input("Digite la cantidad de Ingresos a registrar (entre 3 y 12): "))
@@ -38,7 +38,7 @@ class CalculadoraIngresos:
 
 if __name__ == "__main__":
     calculadora = CalculadoraIngresos()
-    calculadora.ingresar_salarios()
+    calculadora.registrar_ingresos()
     promedio_salarios = calculadora.calcular_promedio()
     if promedio_salarios is not None:
         print("Ingreso Promedio:", promedio_salarios)

@@ -1,6 +1,9 @@
 from ingreso_datos_clientes import *
 
 def tipo_empleo():
+
+    print('Bienvenido')
+    print('Inicaremos el registro de cliente')
     print("Seleccione el tipo de empleo:")
     print("1. Asalariado")
     print("2. Independiente")
@@ -16,11 +19,10 @@ def tipo_empleo():
 
     if opcion == 1:        
         asalariado = Asalariado ()
-        asalariado.ingresar_informacion()
-        antiguedad = antiguedad_laboral()
+        asalariado.ingresar_informacion()      
         asalariado.obtener_informacion()
         info_usuario = asalariado.obtener_informacion()
-        print("Información del usuario:", info_usuario, antiguedad)
+        print("Información del usuario:", info_usuario)
     elif opcion == 2:
         independiente = Independiente()
         independiente.ingresar_informacion()        
@@ -33,7 +35,7 @@ def tipo_empleo():
         print("Información del usuario:", info_usuario)
 
 def antiguedad_laboral():
-    print("Seleccione su antigüedad laboral:")
+    print("Cuanto tiempo tiene de laborar para la compañia :")
     print("1. 0 - 3 meses")
     print("2. 3 - 6 meses")
     print("3. 6 - 12 meses")

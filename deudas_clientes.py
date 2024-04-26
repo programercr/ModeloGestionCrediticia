@@ -28,43 +28,48 @@ class Deuda:
             except ValueError:
                 print("Por favor, ingresa un número válido.")
 
+    def obtener_respuesta(self, pregunta):
+        while True:
+            respuesta = input(pregunta).lower()
+            if respuesta == "si" or respuesta == "no":
+                return respuesta
+            else:
+                print("Por favor, ingresa 'si' o 'no'.")
 
-def obtener_respuesta(pregunta):
-    while True:
-        respuesta = input(pregunta).lower()
-        if respuesta == "si" or respuesta == "no":
-            return respuesta
-        else:
-            print("Por favor, ingresa 'si' o 'no'.")
+    def clasificacion_deudas(self):
+        tiene_deudas = self.obtener_respuesta("¿Tienes deudas con financieras, prestamistas o almacenes? (si/no): ")
 
-def clasificacion_deudas():
-    tiene_deudas = obtener_respuesta("¿Tienes deudas con financieras, prestamistas o almacenes? (si/no): ")
+        if tiene_deudas == "si":
+            tiene_bancarias = self.obtener_respuesta("¿Tus deudas son con entidades financieras? (si/no): ")
+            if tiene_bancarias == "si":
+                self.ingresar_deuda("con financieras")
 
-    if tiene_deudas == "si":
-        deuda = Deuda()
+            tiene_financieras = self.obtener_respuesta("¿Tus deudas son con prestamistas? (si/no): ")
+            if tiene_financieras == "si":
+                self.ingresar_deuda("con prestamistas")
 
-        tiene_bancarias = obtener_respuesta("¿Tus deudas son con entidades financieras? (si/no): ")
-        if tiene_bancarias == "si":
-            deuda.ingresar_deuda("con financieras")
+            tiene_almacenes = self.obtener_respuesta("¿Tus deudas son con almacenes? (si/no): ")
+            if tiene_almacenes == "si":
+                self.ingresar_deuda("con almacenes")
 
-        tiene_financieras = obtener_respuesta("¿Tus deudas son con prestamistas? (si/no): ")
-        if tiene_financieras == "si":
-            deuda.ingresar_deuda("con prestamistas")
+            total_general = self.monto
 
-        tiene_almacenes = obtener_respuesta("¿Tus deudas son con almacenes? (si/no): ")
-        if tiene_almacenes == "si":
-            deuda.ingresar_deuda("con almacenes")
-
-        total_general = deuda.monto
-
-        if total_general > 0:
-            print("El total general de tus deudas es:", total_general)
-            print("La cantidad total de deudas es:", deuda.cantidad_deudas)
+            if total_general > 0:
+                print("El total general de tus deudas es:", total_general)
+                print("La cantidad total de deudas es:", self.cantidad_deudas)
+            else:
+                return 0
+                
+            return total_general
         else:
             print("No tienes deudas. El total de deudas es cero.")
-    else:
-        print("No tienes deudas. El total de deudas es cero.")
+            return 0
 
 if __name__ == "__main__":
-    clasificacion_deudas()
+    deudascliente = Deuda()
+    deudas = deudascliente.clasificacion_deudas()
+
+
+
+
 
