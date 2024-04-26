@@ -99,20 +99,18 @@ class Asalariado(Usuario):
         print('Ahora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
-
-        
-        
-
+    
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
         return info_padre + (self.empleador, self.puesto, self.salario, self.tipo_empleado,self.antiguedadLaboral, self.ingresos, self.deudas)
-
 
 class Independiente(Usuario):
     def __init__(self):
         super().__init__()
         self.tipo_empleado = "Independiente"
         self.ingresos_mensuales = 0
+        self.ingresos = 0
+        self.deudas = 0
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
@@ -123,16 +121,25 @@ class Independiente(Usuario):
             except ValueError:
                 print("Por favor, ingrese un monto válido.")
 
+        print('Ahora calcularemos su promedio de Ingresos')        
+        ingresoscliente = CalculadoraIngresos()
+        ingresoscliente.registrar_ingresos()
+        promedio_ingresos = ingresoscliente.calcular_promedio()
+        self.ingresos = promedio_ingresos
+        print('Ahora registraremos sus deudas actuales')
+        deudascliente = Deuda()
+        self.deudas = deudascliente.clasificacion_deudas()
+     
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.ingresos_mensuales, self.tipo_empleado)
-
+        return info_padre + (self.tipo_empleado, self.ingresos, self.deudas)
 
 class Pensionado(Usuario):
     def __init__(self):
         super().__init__()
         self.tipo_empleado = "Pensionado"
         self.pension = 0
+        self.deudas = 0
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
@@ -142,10 +149,13 @@ class Pensionado(Usuario):
                 break
             except ValueError:
                 print("Por favor, ingrese un monto válido.")
+        print('Ahora registraremos sus deudas actuales')
+        deudascliente = Deuda()
+        self.deudas = deudascliente.clasificacion_deudas()
 
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.pension, self.tipo_empleado)
+        return info_padre + (self.pension, self.tipo_empleado, self.deudas)
 
 
 if __name__ == "__main__":
