@@ -55,7 +55,6 @@ class Usuario:
                 break
 
         self.correo_electronico = input("Ingrese el Correo Electrónico: ")
-
         while True:
             self.telefono = input("Ingrese Teléfono: ")
             if not self.telefono.isdigit() or len(self.telefono) != 8:
