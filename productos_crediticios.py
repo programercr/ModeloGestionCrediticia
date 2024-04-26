@@ -1,2 +1,2 @@
 def prestamo_personal():
-    print('beto te presta')
+    print('Es sujeto de credito')
