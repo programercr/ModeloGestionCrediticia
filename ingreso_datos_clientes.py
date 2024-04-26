@@ -138,7 +138,7 @@ class Pensionado(Usuario):
         super().__init__()
         self.tipo_empleado = "Pensionado"
         self.pension = 0
-        self.deudas = 0
+        
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
