@@ -18,8 +18,12 @@ class Deuda:
                                 if monto <= 0:
                                     print("Por favor, ingresa un monto válido mayor que cero.")
                                 else:
-                                    total_deuda += monto
-                                    break
+                                    confirmacion = input(f"¿El monto de ${monto} es correcto? (si/no): ")
+                                    if confirmacion.lower() == "si":
+                                        total_deuda += monto
+                                        break
+                                    else:
+                                        print("Por favor, ingrese el monto nuevamente.")
                             except ValueError:
                                 print("Por favor, ingresa un monto válido.")
                     self.monto += total_deuda
@@ -57,10 +61,9 @@ class Deuda:
             if total_general > 0:
                 print("El total general de tus deudas es:", total_general)
                 print("La cantidad total de deudas es:", self.cantidad_deudas)
+                return total_general
             else:
                 return 0
-                
-            return total_general
         else:
             print("No tienes deudas. El total de deudas es cero.")
             return 0
@@ -68,8 +71,3 @@ class Deuda:
 if __name__ == "__main__":
     deudascliente = Deuda()
     deudas = deudascliente.clasificacion_deudas()
-
-
-
-
-
