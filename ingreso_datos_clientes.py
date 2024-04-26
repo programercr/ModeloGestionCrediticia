@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from informe_ingresos import *
 from deudas_clientes import *
 import tipo_cliente
+from productos_crediticios import *
 import re
 
 class Usuario:
@@ -122,6 +123,12 @@ class Asalariado(Usuario):
         self.deudas = deudascliente.clasificacion_deudas()
         self.nivel_Endeudamiento = self.deudas/self.ingresos
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento*100),0)}%')
+
+        if self.nivel_Endeudamiento <= 0.5:
+            prestamo_personal()
+        else:
+            print('No es sujeto de credito')
+
     
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
@@ -158,7 +165,7 @@ class Independiente(Usuario):
      
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.tipo_empleado, self.ingresos, self.deudas)
+        return info_padre + (self.tipo_empleado, self.ingresos, self.deudas,self.nivel_Endeudamiento)
 
 class Pensionado(Usuario):
     def __init__(self):
@@ -183,7 +190,7 @@ class Pensionado(Usuario):
 
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.pension, self.tipo_empleado, self.deudas)
+        return info_padre + (self.pension, self.tipo_empleado, self.deudas,self.nivel_Endeudamiento)
 
 
 if __name__ == "__main__":
