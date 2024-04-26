@@ -14,7 +14,7 @@ class CalculadoraIngresos:
                 print("Error: Ingrese un valor numérico válido.")
 
         for i in range(cantidad_salarios):
-            salario = self.validar_input("Digite el ingreso # {}: ".format(i + 1))
+            salario = self.validar_input("Digite el ingreso # {}: $ ".format(i + 1))
             self.salarios.append(salario)
 
     def validar_input(self, mensaje):

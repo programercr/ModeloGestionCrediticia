@@ -14,7 +14,7 @@ class Deuda:
                     for i in range(1, cantidad_deudas + 1):
                         while True:
                             try:
-                                monto = float(input(f"Ingrese el monto de la deuda {tipo_deuda} #{i}: "))
+                                monto = float(input(f"Ingrese el monto de la deuda {tipo_deuda} #{i}: $ "))
                                 if monto <= 0:
                                     print("Por favor, ingresa un monto válido mayor que cero.")
                                 else:
