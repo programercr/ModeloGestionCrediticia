@@ -1,9 +1,7 @@
-from ingreso_datos_clientes import *
+from tipo_cliente import *
 
 
 
-
-inicio_programa = Asalariado()
-inicio_programa.ingresar_informacion
+tipo_empleo()
 
 
