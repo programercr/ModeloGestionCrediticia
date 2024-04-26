@@ -3,6 +3,7 @@ from informe_ingresos import *
 from deudas_clientes import *
 import tipo_cliente
 
+import re
 
 class Usuario:
     def __init__(self):
@@ -29,8 +30,8 @@ class Usuario:
             self.nombre = input("Ingrese el Nombre: ")
 
         self.apellidos = input("Ingrese sus Apellidos: ")
-        while not self.apellidos.replace(" ", "").isalnum():
-            print("Los apellidos solo pueden contener caracteres alfanuméricos y espacios.")
+        while not self.apellidos.replace(" ", "").isalpha():
+            print("Los apellidos solo pueden contener letras y espacios.")
             self.apellidos = input("Ingrese sus Apellidos: ")
 
         while True:
@@ -44,7 +45,21 @@ class Usuario:
             except ValueError:
                 print("Por favor, ingrese una fecha válida en el formato especificado.")
 
-        self.estado_civil = input("Ingrese el Estado Civil: ")
+        while True:
+            print("Seleccione su estado civil:")
+            print("1. Soltero/a")
+            print("2. Casado/a")
+            print("3. Unión libre o unión de hecho")
+            print("4. Separado/a")
+            print("5. Divorciado/a")
+            print("6. Viudo/a")
+            opcion_estado_civil = input("Ingrese el número correspondiente a su estado civil: ")
+            if opcion_estado_civil.isdigit() and 1 <= int(opcion_estado_civil) <= 6:
+                opciones = ["Soltero/a", "Casado/a", "Unión libre o unión de hecho", "Separado/a", "Divorciado/a", "Viudo/a"]
+                self.estado_civil = opciones[int(opcion_estado_civil) - 1]
+                break
+            else:
+                print("Por favor, ingrese un número válido.")
 
         provincias_validas = ["cartago", "limon", "san jose", "heredia", "guanacaste", "alajuela", "puntarenas"]
         while True:
@@ -54,7 +69,13 @@ class Usuario:
             else:
                 break
 
-        self.correo_electronico = input("Ingrese el Correo Electrónico: ")
+        while True:
+            self.correo_electronico = input("Ingrese el Correo Electrónico: ")
+            if not re.match(r"[^@]+@[^@]+\.[^@]+", self.correo_electronico):
+                print("Por favor, ingrese un correo electrónico válido.")
+            else:
+                break
+
         while True:
             self.telefono = input("Ingrese Teléfono: ")
             if not self.telefono.isdigit() or len(self.telefono) != 8:
@@ -65,6 +86,13 @@ class Usuario:
     def obtener_informacion(self):
         return (self.documento_id, self.nombre, self.apellidos, self.fecha_nacimiento,
                 self.estado_civil, self.provincia, self.correo_electronico, self.telefono)
+
+# Ejemplo de uso
+usuario = Usuario()
+usuario.ingresar_informacion()
+print("Información del usuario ingresada:")
+print(usuario.obtener_informacion())
+
     
 class Asalariado(Usuario):
     def __init__(self):
@@ -132,6 +160,8 @@ class Independiente(Usuario):
         print('Ahora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
+        self.nivel_Endeudamiento = self.deudas/self.ingresos
+        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento*100),0)}%')
      
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
@@ -155,6 +185,8 @@ class Pensionado(Usuario):
         print('Ahora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
+        self.nivel_Endeudamiento = self.deudas/self.ingresos
+        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento*100),0)}%')
 
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
