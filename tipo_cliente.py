@@ -1,9 +1,9 @@
 from ingreso_datos_clientes import *
 
 def tipo_empleo():
-
+    
     print('Bienvenido')
-    print('Inicaremos el registro de cliente')
+    print('Iniciaremos el registro de cliente')
     print("Seleccione el tipo de empleo:")
     print("1. Asalariado")
     print("2. Independiente")
@@ -18,7 +18,7 @@ def tipo_empleo():
         print("Opción inválida. Por favor, seleccione una opción válida.")
 
     if opcion == 1:        
-        asalariado = Asalariado ()
+        asalariado = Asalariado()
         asalariado.ingresar_informacion()      
         asalariado.obtener_informacion()
         info_usuario = asalariado.obtener_informacion()
@@ -59,4 +59,4 @@ def antiguedad_laboral():
         return "Mayor a 12 meses"
 
 if __name__=="__main__":
-    tipo_empleo ()
+    tipo_empleo()

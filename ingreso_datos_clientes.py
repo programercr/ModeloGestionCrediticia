@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 from informe_ingresos import *
 from deudas_clientes import *
 import tipo_cliente
-
 import re
 
 class Usuario:
@@ -86,12 +85,6 @@ class Usuario:
     def obtener_informacion(self):
         return (self.documento_id, self.nombre, self.apellidos, self.fecha_nacimiento,
                 self.estado_civil, self.provincia, self.correo_electronico, self.telefono)
-
-# Ejemplo de uso
-usuario = Usuario()
-usuario.ingresar_informacion()
-print("Información del usuario ingresada:")
-print(usuario.obtener_informacion())
 
     
 class Asalariado(Usuario):
@@ -194,16 +187,16 @@ class Pensionado(Usuario):
 
 
 if __name__ == "__main__":
+
     # Ejemplo de uso
     asalariado = Asalariado()
     asalariado.ingresar_informacion()
     print(asalariado.obtener_informacion())
 
-'''
     independiente = Independiente()
     independiente.ingresar_informacion()
     print(independiente.obtener_informacion())
 
     pensionado = Pensionado()
     pensionado.ingresar_informacion()
-    print(pensionado.obtener_informacion())'''
+    print(pensionado.obtener_informacion())
