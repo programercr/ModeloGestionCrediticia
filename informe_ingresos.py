@@ -24,7 +24,11 @@ class CalculadoraIngresos:
                 if salario < 0:
                     print("Error: El Ingreso no puede ser negativo.")
                 else:
-                    return salario
+                    confirmacion = input(f"¿El ingreso de ${salario} es correcto? (si/no): ")
+                    if confirmacion.lower() == "si":
+                        return salario
+                    else:
+                        print("Por favor, ingrese el monto nuevamente.")
             except ValueError:
                 print("Error: Ingrese un valor numérico válido.")
 
@@ -42,5 +46,6 @@ if __name__ == "__main__":
     promedio_salarios = calculadora.calcular_promedio()
     if promedio_salarios is not None:
         print("Ingreso Promedio:", promedio_salarios)
+
 
 
