@@ -84,8 +84,16 @@ class Usuario:
                 break
 
     def obtener_informacion(self):
-        return (self.documento_id, self.nombre, self.apellidos, self.fecha_nacimiento,
-                self.estado_civil, self.provincia, self.correo_electronico, self.telefono)
+        return {
+            "documento_id": self.documento_id,
+            "nombre": self.nombre,
+            "apellidos": self.apellidos,
+            "fecha_nacimiento": self.fecha_nacimiento,
+            "estado_civil": self.estado_civil,
+            "provincia": self.provincia,
+            "correo_electronico": self.correo_electronico,
+            "telefono": self.telefono
+        }
 
     
 class Asalariado(Usuario):
@@ -132,8 +140,18 @@ class Asalariado(Usuario):
     
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.empleador, self.puesto, self.salario, self.tipo_empleado,self.antiguedadLaboral, self.ingresos, self.deudas,self.nivel_Endeudamiento)
-
+        return {
+            **info_padre,
+            "empleador": self.empleador,
+            "puesto": self.puesto,
+            "salario": self.salario,
+            "tipo_empleado": self.tipo_empleado,
+            "antiguedadLaboral": self.antiguedadLaboral,
+            "ingresos": self.ingresos,
+            "deudas": self.deudas,
+            "nivel_Endeudamiento": self.nivel_Endeudamiento
+        }
+    
 class Independiente(Usuario):
 
     def __init__(self):
@@ -165,7 +183,14 @@ class Independiente(Usuario):
      
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.tipo_empleado, self.ingresos, self.deudas,self.nivel_Endeudamiento)
+        return {
+            **info_padre,
+            "tipo_empleado": self.tipo_empleado,
+            "ingresos_mensuales": self.ingresos_mensuales,
+            "ingresos": self.ingresos,
+            "deudas": self.deudas,
+            "nivel_Endeudamiento": self.nivel_Endeudamiento
+        }
 
 class Pensionado(Usuario):
     def __init__(self):
@@ -190,7 +215,13 @@ class Pensionado(Usuario):
 
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
-        return info_padre + (self.pension, self.tipo_empleado, self.deudas,self.nivel_Endeudamiento)
+        return {
+            **info_padre,
+            "pension": self.pension,
+            "tipo_empleado": self.tipo_empleado,
+            "deudas": self.deudas,
+            "nivel_Endeudamiento": self.nivel_Endeudamiento
+        }
 
 
 if __name__ == "__main__":
