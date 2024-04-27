@@ -17,71 +17,88 @@ class Usuario:
         self.telefono = ""
 
     def ingresar_informacion(self):
+        self.documento_id = self.validar_documento()
+        self.nombre = self.validar_nombre()
+        self.apellidos = self.validar_apellidos()
+        self.fecha_nacimiento = self.validar_fecha_nacimiento()
+        self.estado_civil = self.validar_estado_civil()
+        self.provincia = self.validar_provincia()
+        self.correo_electronico = self.validar_correo_electronico()
+        self.telefono = self.validar_telefono()
+
+    def validar_documento(self):
         while True:
-            self.documento_id = input("Ingrese el Documento de Identificación: ")
-            if not self.documento_id.isdigit() or len(self.documento_id) != 9:
-                print("Por favor, ingrese un documento de identificación válido con 9 dígitos.")
+            documento = input("Ingrese el Documento de Identificación: ")
+            if documento.isdigit() and len(documento) == 9:
+                return documento
             else:
-                break
+                print("Por favor, ingrese un documento de identificación válido con 9 dígitos.")
 
-        self.nombre = input("Ingrese el Nombre: ")
-        while not self.nombre.isalpha():
-            print("El nombre solo puede contener letras.")
-            self.nombre = input("Ingrese el Nombre: ")
-
-        self.apellidos = input("Ingrese sus Apellidos: ")
-        while not self.apellidos.replace(" ", "").isalpha():
-            print("Los apellidos solo pueden contener letras y espacios.")
-            self.apellidos = input("Ingrese sus Apellidos: ")
-
+    def validar_nombre(self):
         while True:
-            self.fecha_nacimiento = input("Ingrese la Fecha de Nacimiento (YYYY-MM-DD): ")
+            nombre = input("Ingrese el Nombre: ")
+            if nombre.isalpha():
+                return nombre
+            else:
+                print("El nombre solo puede contener letras.")
+
+    def validar_apellidos(self):
+        while True:
+            apellidos = input("Ingrese sus Apellidos: ")
+            if apellidos.replace(" ", "").isalpha():
+                return apellidos
+            else:
+                print("Los apellidos solo pueden contener letras y espacios.")
+
+    def validar_fecha_nacimiento(self):
+        while True:
+            fecha_nacimiento = input("Ingrese la Fecha de Nacimiento (YYYY-MM-DD): ")
             try:
-                fecha_nacimiento = datetime.strptime(self.fecha_nacimiento, "%Y-%m-%d")
+                fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y-%m-%d")
                 if datetime.now() - fecha_nacimiento < timedelta(days=365*18):
                     print("Debe ser mayor de 18 años para registrarse.")
                 else:
-                    break
+                    return fecha_nacimiento.strftime("%Y-%m-%d")
             except ValueError:
                 print("Por favor, ingrese una fecha válida en el formato especificado.")
 
+    def validar_estado_civil(self):
+        opciones_estado_civil = ["Soltero/a", "Casado/a", "Unión libre o unión de hecho",
+                                 "Separado/a", "Divorciado/a", "Viudo/a"]
         while True:
             print("Seleccione su estado civil:")
-            print("1. Soltero/a")
-            print("2. Casado/a")
-            print("3. Unión libre o unión de hecho")
-            print("4. Separado/a")
-            print("5. Divorciado/a")
-            print("6. Viudo/a")
+            for i, opcion in enumerate(opciones_estado_civil, 1):
+                print(f"{i}. {opcion}")
             opcion_estado_civil = input("Ingrese el número correspondiente a su estado civil: ")
-            if opcion_estado_civil.isdigit() and 1 <= int(opcion_estado_civil) <= 6:
-                opciones = ["Soltero/a", "Casado/a", "Unión libre o unión de hecho", "Separado/a", "Divorciado/a", "Viudo/a"]
-                self.estado_civil = opciones[int(opcion_estado_civil) - 1]
-                break
+            if opcion_estado_civil.isdigit() and 1 <= int(opcion_estado_civil) <= len(opciones_estado_civil):
+                return opciones_estado_civil[int(opcion_estado_civil) - 1]
             else:
                 print("Por favor, ingrese un número válido.")
 
+    def validar_provincia(self):
         provincias_validas = ["cartago", "limon", "san jose", "heredia", "guanacaste", "alajuela", "puntarenas"]
         while True:
-            self.provincia = input("Ingresar Provincia: ")
-            if self.provincia.lower() not in provincias_validas:
+            provincia = input("Ingresar Provincia: ")
+            if provincia.lower() in provincias_validas:
+                return provincia
+            else:
                 print("Provincia inválida. Por favor, ingrese una provincia válida.")
-            else:
-                break
 
+    def validar_correo_electronico(self):
         while True:
-            self.correo_electronico = input("Ingrese el Correo Electrónico: ")
-            if not re.match(r"[^@]+@[^@]+\.[^@]+", self.correo_electronico):
+            correo_electronico = input("Ingrese el Correo Electrónico: ")
+            if re.match(r"[^@]+@[^@]+\.[^@]+", correo_electronico):
+                return correo_electronico
+            else:
                 print("Por favor, ingrese un correo electrónico válido.")
-            else:
-                break
 
+    def validar_telefono(self):
         while True:
-            self.telefono = input("Ingrese Teléfono: ")
-            if not self.telefono.isdigit() or len(self.telefono) != 8:
-                print("Por favor, ingrese un número de teléfono válido con 8 dígitos.")
+            telefono = input("Ingrese Teléfono: ")
+            if telefono.isdigit() and len(telefono) == 8:
+                return telefono
             else:
-                break
+                print("Por favor, ingrese un número de teléfono válido con 8 dígitos.")
 
     def obtener_informacion(self):
         return {
@@ -95,7 +112,6 @@ class Usuario:
             "telefono": self.telefono
         }
 
-    
 class Asalariado(Usuario):
     def __init__(self):
         super().__init__()
@@ -112,16 +128,9 @@ class Asalariado(Usuario):
         super().ingresar_informacion()
         self.empleador = input("Ingrese su empleador: ")
         self.puesto = input("Ingrese su puesto: ")
-
-        while True:
-            try:
-                self.salario = float(input("Ingrese el salario: "))
-                break
-            except ValueError:
-                print("Por favor, ingrese un salario válido.")
-
+        self.salario = self.validar_salario()
         self.antiguedadLaboral = tipo_cliente.antiguedad_laboral()
-        print('Ahora calcularemos su promedio de Ingresos')        
+        print('Ahora calcularemos su promedio de Ingresos')
         ingresoscliente = CalculadoraIngresos()
         ingresoscliente.registrar_ingresos()
         promedio_ingresos = ingresoscliente.calcular_promedio()
@@ -129,15 +138,22 @@ class Asalariado(Usuario):
         print('Ahora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
-        self.nivel_Endeudamiento = self.deudas/self.ingresos
-        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento*100),0)}%')
+        self.nivel_Endeudamiento = self.deudas / self.ingresos
+        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
             prestamo_personal()
         else:
-            print('No es sujeto de credito')
+            print('No es sujeto de crédito')
 
-    
+    def validar_salario(self):
+        while True:
+            try:
+                salario = float(input("Ingrese el salario: "))
+                return salario
+            except ValueError:
+                print("Por favor, ingrese un salario válido.")
+
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
         return {
@@ -151,9 +167,8 @@ class Asalariado(Usuario):
             "deudas": self.deudas,
             "nivel_Endeudamiento": self.nivel_Endeudamiento
         }
-    
-class Independiente(Usuario):
 
+class Independiente(Usuario):
     def __init__(self):
         super().__init__()
         self.tipo_empleado = "Independiente"
@@ -163,14 +178,8 @@ class Independiente(Usuario):
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
-        while True:
-            try:
-                self.ingresos_mensuales = float(input("Ingrese los ingresos mensuales: "))
-                break
-            except ValueError:
-                print("Por favor, ingrese un monto válido.")
-
-        print('Ahora calcularemos su promedio de Ingresos')        
+        self.ingresos_mensuales = self.validar_ingresos_mensuales()
+        print('Ahora calcularemos su promedio de Ingresos')
         ingresoscliente = CalculadoraIngresos()
         ingresoscliente.registrar_ingresos()
         promedio_ingresos = ingresoscliente.calcular_promedio()
@@ -178,9 +187,22 @@ class Independiente(Usuario):
         print('Ahora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
-        self.nivel_Endeudamiento = self.deudas/self.ingresos
-        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento*100),0)}%')
-     
+        self.nivel_Endeudamiento = self.deudas / self.ingresos
+        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
+
+        if self.nivel_Endeudamiento <= 0.5:
+            prestamo_personal()
+        else:
+            print('No es sujeto de crédito')
+
+    def validar_ingresos_mensuales(self):
+        while True:
+            try:
+                ingresos_mensuales = float(input("Ingrese los ingresos mensuales: "))
+                return ingresos_mensuales
+            except ValueError:
+                print("Por favor, ingrese un monto válido.")
+
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
         return {
@@ -197,21 +219,28 @@ class Pensionado(Usuario):
         super().__init__()
         self.tipo_empleado = "Pensionado"
         self.pension = 0
-        
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
-        while True:
-            try:
-                self.pension = float(input("Ingrese monto de pensión: "))
-                break
-            except ValueError:
-                print("Por favor, ingrese un monto válido.")
+        self.pension = self.validar_pension()
         print('Ahora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
-        self.nivel_Endeudamiento = self.deudas/self.ingresos
-        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento*100),0)}%')
+        self.nivel_Endeudamiento = self.deudas / self.pension
+        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
+
+        if self.nivel_Endeudamiento <= 0.5:
+            prestamo_personal()
+        else:
+            print('No es sujeto de crédito')
+
+    def validar_pension(self):
+        while True:
+            try:
+                pension = float(input("Ingrese monto de pensión: "))
+                return pension
+            except ValueError:
+                print("Por favor, ingrese un monto válido.")
 
     def obtener_informacion(self):
         info_padre = super().obtener_informacion()
@@ -223,10 +252,7 @@ class Pensionado(Usuario):
             "nivel_Endeudamiento": self.nivel_Endeudamiento
         }
 
-
 if __name__ == "__main__":
-
-    # Ejemplo de uso
     asalariado = Asalariado()
     asalariado.ingresar_informacion()
     print(asalariado.obtener_informacion())
