@@ -1,30 +1,22 @@
+# Importamos las librerías necesarias
 from behave import given, when, then
 
-@given('que estoy en el formulario de datos personales')
+# Definimos los pasos iniciales usando el decorador @given
+@given('una calculadora')
 def step_impl(context):
-    # Implementación de la navegación a la página del formulario (simulado)
-    pass
+    context.calculadora = Calculadora()
 
-@when('ingreso mi nombre "{nombre}", apellido "{apellido}", edad "{edad}", email "{email}" y teléfono "{telefono}"')
-def step_impl(context, nombre, apellido, edad, email, telefono):
-    # Simulación de interacción con los campos del formulario y envío de datos
-    context.nombre = nombre
-    context.apellido = apellido
-    context.edad = int(edad)
-    context.email = email
-    context.telefono = telefono
+# Definimos los pasos para la acción que queremos probar usando el decorador @when
+@when('sumamos {x:d} y {y:d}')
+def step_impl(context, x, y):
+    context.resultado = context.calculadora.sumar(x, y)
 
-@then('veo un mensaje de confirmación de ingreso exitoso')
-def step_impl(context):
-    # Verificación de mensaje de confirmación de ingreso exitoso (simulado)
-    assert True
+# Definimos los pasos para la verificación del resultado usando el decorador @then
+@then('el resultado es {resultado:d}')
+def step_impl(context, resultado):
+    assert context.resultado == resultado, f"El resultado debería ser {resultado} pero fue {context.resultado}"
 
-@then('veo un mensaje de error indicando que la edad debe ser un número positivo')
-def step_impl(context):
-    # Verificación de mensaje de error por edad negativa
-    assert context.edad >= 0, "La edad debe ser un número positivo"
-
-@then('veo un mensaje de error indicando que el campo de nombre es obligatorio')
-def step_impl(context):
-    # Verificación de mensaje de error por campo de nombre en blanco
-    assert context.nombre != "", "El campo de nombre es obligatorio"
+# Clase de la calculadora
+class Calculadora:
+    def sumar(self, x, y):
+        return x + y
