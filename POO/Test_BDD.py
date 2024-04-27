@@ -1,6 +1,12 @@
 # Importamos las librerías necesarias
 from behave import given, when, then
 
+'''
+BDD, o Desarrollo Guiado por Comportamiento (Behavior-Driven Development) en español, 
+es una metodología de desarrollo de software que se centra en el comportamiento del sistema desde la perspectiva del usuario final. 
+BDD se basa en la idea de que el software debe ser desarrollado en términos del comportamiento observable del sistema, 
+en lugar de solo en términos de sus funciones internas.'''
+
 # Definimos los pasos iniciales usando el decorador @given
 @given('una calculadora')
 def step_impl(context):
