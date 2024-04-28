@@ -46,8 +46,7 @@ class AnalizadorDeUsuarios:
 if __name__ == "__main__":
     analizador = AnalizadorDeUsuarios("usuarios.csv")
     analizador.agregar_cuota()
-    analizador.mostrar_datos()
-    documento_id = '258369147'
+    documento_id = '123456789'
     info_usuario, info_productos = analizador.productos(documento_id)
     print("Información del Usuario:")
     print(info_usuario)
