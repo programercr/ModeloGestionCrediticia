@@ -3,6 +3,7 @@ from informe_ingresos import *
 from deudas_clientes import *
 import tipo_cliente
 from productos_crediticios import *
+from base_datos_clientes import *
 import re
 
 class Usuario:
@@ -27,12 +28,21 @@ class Usuario:
         self.telefono = self.validar_telefono()
 
     def validar_documento(self):
+        base_de_datos = BaseDeDatosCSV("usuarios.csv")
         while True:
             documento = input("Ingrese el Documento de Identificación: ")
             if documento.isdigit() and len(documento) == 9:
-                return documento
+                # Llamar a la función validar_usuario_en_dasedatos para verificar si el usuario existe
+                usuario_existe = base_de_datos.validar_usuario_en_dasedatos(documento)
+                if usuario_existe:
+                    print("El usuario ya existe en la base de datos.")
+                    tipo_cliente.tipo_empleo()
+                else:
+                    # Si el usuario no existe, se devuelve el documento
+                    return documento
             else:
                 print("Por favor, ingrese un documento de identificación válido con 9 dígitos.")
+
 
     def validar_nombre(self):
         while True:

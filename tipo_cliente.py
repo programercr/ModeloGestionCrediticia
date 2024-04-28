@@ -1,7 +1,10 @@
 from ingreso_datos_clientes import *
+from base_datos_clientes import *
+
+# Crea una instancia de BaseDeDatosCSV
+base_de_datos = BaseDeDatosCSV("usuarios.csv")
 
 def tipo_empleo():
-    
     print('Bienvenido')
     print('Iniciaremos el registro de cliente')
     print("Seleccione el tipo de empleo:")
@@ -23,16 +26,19 @@ def tipo_empleo():
         asalariado.obtener_informacion()
         info_usuario = asalariado.obtener_informacion()
         print("Información del usuario:", info_usuario)
+        base_de_datos.guardar_usuario(asalariado)  # Guarda la información del usuario en la base de datos
     elif opcion == 2:
         independiente = Independiente()
         independiente.ingresar_informacion()        
         info_usuario = independiente.obtener_informacion()
         print("Información del usuario:", info_usuario)
+        base_de_datos.guardar_usuario(independiente)  # Guarda la información del usuario en la base de datos
     elif opcion == 3:
         pensionado = Pensionado()
         pensionado.ingresar_informacion()
         info_usuario = pensionado.obtener_informacion()
         print("Información del usuario:", info_usuario)
+        base_de_datos.guardar_usuario(pensionado)  # Guarda la información del usuario en la base de datos
 
 def antiguedad_laboral():
     print("Cuanto tiempo tiene de laborar para la compañia :")
