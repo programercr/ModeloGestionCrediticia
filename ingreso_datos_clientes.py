@@ -35,7 +35,7 @@ class Usuario:
                 # Llamar a la función validar_usuario_en_dasedatos para verificar si el usuario existe
                 usuario_existe = base_de_datos.validar_usuario_en_dasedatos(documento)
                 if usuario_existe:
-                    print("El usuario ya existe en la base de datos.")
+                    print("El usuario ya existe en la base de datos.\n")
                     tipo_cliente.tipo_empleo()
                 else:
                     # Si el usuario no existe, se devuelve el documento
