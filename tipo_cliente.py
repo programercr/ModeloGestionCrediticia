@@ -5,12 +5,6 @@ from base_datos_clientes import *
 base_de_datos = BaseDeDatosCSV("usuarios.csv")
 
 def tipo_empleo():
-    print('Bienvenido')
-    print('Iniciaremos el registro de cliente')
-    print("Seleccione el tipo de empleo:")
-    print("1. Asalariado")
-    print("2. Independiente")
-    print("3. Pensionado")
 
     while True:
         opcion = input("Ingrese el número correspondiente al tipo de empleado: ")
