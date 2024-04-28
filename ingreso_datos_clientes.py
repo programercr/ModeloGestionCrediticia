@@ -152,7 +152,7 @@ class Asalariado(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            prestamo_personal()
+            print('Es sujeto de credito')
         else:
             print('No es sujeto de crédito')
 
@@ -201,7 +201,7 @@ class Independiente(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            prestamo_personal()
+            print('Es sujeto de credito')
         else:
             print('No es sujeto de crédito')
 
@@ -240,7 +240,7 @@ class Pensionado(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            prestamo_personal()
+            print('Es sujeto de credito')
         else:
             print('No es sujeto de crédito')
 

@@ -1,4 +1,5 @@
 import csv
+import pandas as pd
 
 class BaseDeDatosCSV:
     def __init__(self, filename):
@@ -32,12 +33,19 @@ class BaseDeDatosCSV:
                     return True
         # Si no se encuentra ninguna coincidencia después de iterar sobre todas las filas
         return False
+    
+
+
+class LeerBaseDeDatos:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def leer_todos_los_usuarios(self):
+        """Lee todos los usuarios desde el archivo CSV usando Pandas y devuelve un DataFrame."""
+        return pd.read_csv(self.filename)
 
 
 if __name__ == "__main__":
-    # Crear una instancia de la base de datos
-    base_de_datos = BaseDeDatosCSV("usuarios.csv")
-
-    # Llamar al método validar_usuario y proporcionarle el documento_id a validar
-    documento_id = '123456789'  # Este sería el documento_id que deseas validar
-    resultado_validacion = base_de_datos.validar_usuario_en_dasedatos(documento_id)
+    lector = LeerBaseDeDatos("usuarios.csv")
+    df_usuarios = lector.leer_todos_los_usuarios()
+    print(df_usuarios)
