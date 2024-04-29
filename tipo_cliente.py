@@ -40,7 +40,7 @@ def tipo_empleo():
         if independiente.sujeto_credito == 1:
             analizador = AnalizadorDeUsuarios("usuarios.csv")
             analizador.agregar_cuota()
-            info_usuario, info_productos= analizador.productos(asalariado.documento_id)
+            info_usuario, info_productos= analizador.productos(independiente.documento_id)
             producto_seleccionado = analizador.elegir_producto()
             analizador.usuario_producto(info_usuario, producto_seleccionado)
         else:
@@ -54,7 +54,7 @@ def tipo_empleo():
         if pensionado.sujeto_credito == 1:
             analizador = AnalizadorDeUsuarios("usuarios.csv")
             analizador.agregar_cuota()
-            info_usuario, info_productos= analizador.productos(asalariado.documento_id)
+            info_usuario, info_productos= analizador.productos(pensionado.documento_id)
             producto_seleccionado = analizador.elegir_producto()
             analizador.usuario_producto(info_usuario, producto_seleccionado)
         else:
