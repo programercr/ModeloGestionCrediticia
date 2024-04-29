@@ -36,11 +36,11 @@ def tipo_empleo():
         base_de_datos.guardar_usuario(independiente)  # Guarda la información del usuario en la base de datos
         analizador = AnalizadorDeUsuarios("usuarios.csv")
         analizador.agregar_cuota()
-        info_usuario, info_productos = analizador.productos(asalariado.documento_id)
+        info_usuario, info_productos = analizador.productos(independiente.documento_id)
         print(info_productos.to_string(index=False))
         producto_seleccionado = analizador.elegir_producto()
         analizador.usuario_producto(info_usuario, producto_seleccionado)
-        
+
     elif opcion == 3:
         pensionado = Pensionado()
         pensionado.ingresar_informacion()
@@ -48,7 +48,7 @@ def tipo_empleo():
         base_de_datos.guardar_usuario(pensionado)  # Guarda la información del usuario en la base de datos
         analizador = AnalizadorDeUsuarios("usuarios.csv")
         analizador.agregar_cuota()
-        info_usuario, info_productos = analizador.productos(asalariado.documento_id)
+        info_usuario, info_productos = analizador.productos(pensionado.documento_id)
         print(info_productos.to_string(index=False))
         producto_seleccionado = analizador.elegir_producto()
         analizador.usuario_producto(info_usuario, producto_seleccionado)
