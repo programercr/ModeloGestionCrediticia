@@ -21,27 +21,37 @@ def tipo_empleo():
         asalariado.ingresar_informacion()      
         asalariado.obtener_informacion()
         info_usuario = asalariado.obtener_informacion()
-        print("Información del usuario:", info_usuario)
         base_de_datos.guardar_usuario(asalariado)  # Guarda la información del usuario en la base de datos
         analizador = AnalizadorDeUsuarios("usuarios.csv")
         analizador.agregar_cuota()
         info_usuario, info_productos = analizador.productos(asalariado.documento_id)
         print(info_productos.to_string(index=False))
         producto_seleccionado = analizador.elegir_producto()
-        info_producto = analizador.usuario_producto(info_usuario, producto_seleccionado)
+        analizador.usuario_producto(info_usuario, producto_seleccionado)
 
     elif opcion == 2:
         independiente = Independiente()
         independiente.ingresar_informacion()        
         info_usuario = independiente.obtener_informacion()
-        print("Información del usuario:", info_usuario)
         base_de_datos.guardar_usuario(independiente)  # Guarda la información del usuario en la base de datos
+        analizador = AnalizadorDeUsuarios("usuarios.csv")
+        analizador.agregar_cuota()
+        info_usuario, info_productos = analizador.productos(asalariado.documento_id)
+        print(info_productos.to_string(index=False))
+        producto_seleccionado = analizador.elegir_producto()
+        analizador.usuario_producto(info_usuario, producto_seleccionado)
+        
     elif opcion == 3:
         pensionado = Pensionado()
         pensionado.ingresar_informacion()
         info_usuario = pensionado.obtener_informacion()
-        print("Información del usuario:", info_usuario)
         base_de_datos.guardar_usuario(pensionado)  # Guarda la información del usuario en la base de datos
+        analizador = AnalizadorDeUsuarios("usuarios.csv")
+        analizador.agregar_cuota()
+        info_usuario, info_productos = analizador.productos(asalariado.documento_id)
+        print(info_productos.to_string(index=False))
+        producto_seleccionado = analizador.elegir_producto()
+        analizador.usuario_producto(info_usuario, producto_seleccionado)
 
 def antiguedad_laboral():
     print("Cuanto tiempo tiene de laborar para la compañia :")
