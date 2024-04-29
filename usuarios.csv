@@ -1,0 +1,7 @@
+documento_id,nombre,apellidos,fecha_nacimiento,estado_civil,provincia,correo_electronico,telefono,tipo_empleado,salario,ingresos_mensuales,pension,empleador,puesto,antiguedadLaboral,ingresos,deudas,nivel_Endeudamiento
+304020660,Jose,Lopez,1990-11-11,Casado/a,San Jose,eqe@gmail.com,12345678,Asalariado,2000.0,,,cr,cr,Mayor a 12 meses,2000.0,600.0,0.3
+102070989,Asdrubal,lopez ,1986-12-12,Soltero/a,Alajuela,qweqw@gmail.com,12345678,Asalariado,1500.0,,,cr,cr,Mayor a 12 meses,1166.6666666666667,1500.0,1.2857142857142856
+123456789,MARIA,LOPEZ,1989-12-12,Casado/a,San Jose,qweqe@gmail.com,12345678,Independiente,,2000.0,,,,,1500.0,0,0.0
+213456789,Laura,Lamas,1995-11-11,Divorciado/a,Heredia,asdasd@gmail.com,34567543,Independiente,,1200.0,,,,,1200.0,3000.0,2.5
+988373736,ANA,RAMIREZ,1941-12-12,Viudo/a,Cartago,eqweqwe@gmail.com,12345678,Pensionado,,,10000.0,,,,,500.0,0.05
+234564356,Mario,Lopez,1999-12-12,Soltero/a,Cartago,dasd@gmail.com,23456456,Pensionado,,,1000.0,,,,,4000.0,4.0
