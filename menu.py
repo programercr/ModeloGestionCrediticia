@@ -13,7 +13,8 @@ while True:
         3. Pensionado
               
               ''')
-        tipo_empleo()
+        a = tipo_empleo()
+        print(a)
 
 
 

@@ -202,6 +202,7 @@ class Independiente(Usuario):
 
         if self.nivel_Endeudamiento <= 0.5:
             print('Es sujeto de credito')
+            return self.documento_id
         else:
             print('No es sujeto de crédito')
 
