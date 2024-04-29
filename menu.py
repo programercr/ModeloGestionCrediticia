@@ -1,4 +1,5 @@
 from tipo_cliente import *
+import sys 
 
 
 
@@ -14,8 +15,8 @@ while True:
       3. Pensionado
 
       ''')
-      tipo_empleo()
-      break
+      tipo_empleo() 
+sys.exit()
 
 
 
