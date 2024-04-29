@@ -23,33 +23,42 @@ def tipo_empleo():
         asalariado.obtener_informacion()
         info_usuario = asalariado.obtener_informacion()
         base_de_datos.guardar_usuario(asalariado)  # Guarda la información del usuario en la base de datos
-        analizador = AnalizadorDeUsuarios("usuarios.csv")
-        analizador.agregar_cuota()
-        info_usuario, info_productos= analizador.productos(asalariado.documento_id)
-        producto_seleccionado = analizador.elegir_producto()
-        analizador.usuario_producto(info_usuario, producto_seleccionado)
+        if asalariado.sujeto_credito == 1:
+            analizador = AnalizadorDeUsuarios("usuarios.csv")
+            analizador.agregar_cuota()
+            info_usuario, info_productos= analizador.productos(asalariado.documento_id)
+            producto_seleccionado = analizador.elegir_producto()
+            analizador.usuario_producto(info_usuario, producto_seleccionado)
+        else:
+            print('No es sujeto de Credito')
 
     elif opcion == 2:
         independiente = Independiente()
         independiente.ingresar_informacion()        
         info_usuario = independiente.obtener_informacion()
         base_de_datos.guardar_usuario(independiente)  # Guarda la información del usuario en la base de datos
-        analizador = AnalizadorDeUsuarios("usuarios.csv")
-        analizador.agregar_cuota()
-        info_usuario, info_productos= analizador.productos(independiente.documento_id)
-        producto_seleccionado = analizador.elegir_producto()
-        analizador.usuario_producto(info_usuario, producto_seleccionado)
+        if independiente.sujeto_credito == 1:
+            analizador = AnalizadorDeUsuarios("usuarios.csv")
+            analizador.agregar_cuota()
+            info_usuario, info_productos= analizador.productos(asalariado.documento_id)
+            producto_seleccionado = analizador.elegir_producto()
+            analizador.usuario_producto(info_usuario, producto_seleccionado)
+        else:
+            print('No es sujeto de Credito')
 
     elif opcion == 3:
         pensionado = Pensionado()
         pensionado.ingresar_informacion()
         info_usuario = pensionado.obtener_informacion()
         base_de_datos.guardar_usuario(pensionado)  # Guarda la información del usuario en la base de datos
-        analizador = AnalizadorDeUsuarios("usuarios.csv")
-        analizador.agregar_cuota()
-        info_usuario, info_productos= analizador.productos(pensionado.documento_id)
-        producto_seleccionado = analizador.elegir_producto()
-        analizador.usuario_producto(info_usuario, producto_seleccionado)
+        if pensionado.sujeto_credito == 1:
+            analizador = AnalizadorDeUsuarios("usuarios.csv")
+            analizador.agregar_cuota()
+            info_usuario, info_productos= analizador.productos(asalariado.documento_id)
+            producto_seleccionado = analizador.elegir_producto()
+            analizador.usuario_producto(info_usuario, producto_seleccionado)
+        else:
+            print('No es sujeto de Credito')
         
     sys.exit()  # Termina la ejecución del programa
     

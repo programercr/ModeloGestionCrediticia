@@ -133,6 +133,7 @@ class Asalariado(Usuario):
         self.deudas = 0
         self.antiguedadLaboral = ''
         self.nivel_Endeudamiento = 0
+        self.sujeto_credito = 0
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
@@ -152,9 +153,10 @@ class Asalariado(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            return self.documento_id
+            self.sujeto_credito = 1
+            return self.documento_id,self.sujeto_credito
         else:
-            print('No es sujeto de crédito')
+            return self.sujeto_credito
             
           
 
@@ -187,6 +189,7 @@ class Independiente(Usuario):
         self.ingresos_mensuales = 0
         self.ingresos = 0
         self.deudas = 0
+        self.sujeto_credito = 0
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
@@ -203,9 +206,10 @@ class Independiente(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            return self.documento_id
+            self.sujeto_credito = 1
+            return self.documento_id,self.sujeto_credito
         else:
-            print('No es sujeto de crédito')
+            return self.sujeto_credito
            
 
     def validar_ingresos_mensuales(self):
@@ -232,6 +236,7 @@ class Pensionado(Usuario):
         super().__init__()
         self.tipo_empleado = "Pensionado"
         self.pension = 0
+        self.sujeto_credito = 0
 
     def ingresar_informacion(self):
         super().ingresar_informacion()
@@ -243,9 +248,10 @@ class Pensionado(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            return self.documento_id
+            self.sujeto_credito = 1
+            return self.documento_id, self.sujeto_credito
         else:
-            print('No es sujeto de crédito')
+            return self.sujeto_credito
            
 
     def validar_pension(self):
