@@ -67,7 +67,7 @@ class Deuda:
 
             if total_general > 0:
                 print("El total general de tus deudas es:", total_general)
-                print("La cantidad total de deudas es:", self.cantidad_deudas)
+                print("La cantidad total de deudas es: $", self.cantidad_deudas)
                 return total_general
             else:
                 return 0
