@@ -1,6 +1,7 @@
 from ingreso_datos_clientes import *
 from base_datos_clientes import *
 
+
 # Crea una instancia de BaseDeDatosCSV
 base_de_datos = BaseDeDatosCSV("usuarios.csv")
 

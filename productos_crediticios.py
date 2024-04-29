@@ -100,6 +100,7 @@ if __name__ == "__main__":
     analizador.agregar_cuota()
     documento_id = '123456789'
     info_usuario, info_productos = analizador.productos(documento_id)
+    print(info_productos.to_string(index=False))
     producto_seleccionado = analizador.elegir_producto()
     info_producto = analizador.usuario_producto(info_usuario, producto_seleccionado)
 
