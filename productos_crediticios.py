@@ -79,10 +79,10 @@ class AnalizadorDeUsuarios:
         print("Documento_id:", usuario_info.iloc[0]['documento_id'])
         print("Nombre:", usuario_info.iloc[0]['nombre'])
         print("Apellidos:", usuario_info.iloc[0]['apellidos'])
-        print("Cuota:", usuario_info.iloc[0]['Cuota'])
+        print("Cuota:$", usuario_info.iloc[0]['Cuota'])
         print("Años:", producto_info['Años'].values[0])
         print("Meses:", producto_info['Meses'].values[0])
-        print("Cantidad a financiar:", producto_info['Cantidad a financiar'].values[0])
+        print("Cantidad a financiar$:", producto_info['Cantidad a financiar'].values[0])
 
         # Retornar los datos del usuario y del producto
         return {
