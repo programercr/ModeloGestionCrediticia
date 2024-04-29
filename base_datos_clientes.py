@@ -47,7 +47,7 @@ class LeerBaseDeDatos:
         self.filename = filename
 
     def leer_todos_los_usuarios(self):
-        return pd.read_csv(self.filename)
+        return pd.read_csv(self.filename, encoding='latin1')  # Especifica la codificación aquí
 
 
 if __name__ == "__main__":
