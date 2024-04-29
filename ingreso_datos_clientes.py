@@ -153,6 +153,7 @@ class Asalariado(Usuario):
 
         if self.nivel_Endeudamiento <= 0.5:
             print(self.documento_id)
+            return (self.documento_id)
         else:
             print('No es sujeto de crédito')
 
