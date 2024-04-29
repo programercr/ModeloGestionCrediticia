@@ -7,3 +7,4 @@ documento_id,nombre,apellidos,fecha_nacimiento,estado_civil,provincia,correo_ele
 304020660,Francisco,Arias,1999-01-01,Soltero/a,Heredia,dass@gmail.com,12345678,Asalariado,1500.0,,,SJ,SJ,3 - 6 meses,1800.0,0,0.0
 304030778,Gonzalez,Alvaro,1951-12-24,Casado/a,San Jose,eqeqw@gmail.com,12345678,Asalariado,2000.0,,,abc,abc,Mayor a 12 meses,2000.0,300.0,0.15
 304020670,Luis,Alvarez,1986-12-12,Soltero/a,Limon,dadas@gmail.com,12345678,Asalariado,2000.0,,,cr,cr,Mayor a 12 meses,2000.0,300.0,0.15
+304470468,juan,magan,1990-07-23,Soltero/a,cartago,jo@gmail.com,71074883,Independiente,,1800.0,,,,,1800.0,0,0.0
