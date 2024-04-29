@@ -161,7 +161,7 @@ class Asalariado(Usuario):
     def validar_salario(self):
         while True:
             try:
-                salario = float(input("Ingrese el salario: "))
+                salario = float(input("Ingrese el salario: $"))
                 return salario
             except ValueError:
                 print("Por favor, ingrese un salario válido.")
@@ -211,7 +211,7 @@ class Independiente(Usuario):
     def validar_ingresos_mensuales(self):
         while True:
             try:
-                ingresos_mensuales = float(input("Ingrese los ingresos mensuales: "))
+                ingresos_mensuales = float(input("Digite sus ingresos mensuales: $"))
                 return ingresos_mensuales
             except ValueError:
                 print("Por favor, ingrese un monto válido.")
@@ -251,7 +251,7 @@ class Pensionado(Usuario):
     def validar_pension(self):
         while True:
             try:
-                pension = float(input("Ingrese monto de pensión: "))
+                pension = float(input("Ingrese monto de pensión: $"))
                 return pension
             except ValueError:
                 print("Por favor, ingrese un monto válido.")
