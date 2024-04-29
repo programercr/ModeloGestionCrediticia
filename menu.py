@@ -1,4 +1,5 @@
 from tipo_cliente import *
+from productos_crediticios import *
 
 
 while True:

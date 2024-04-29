@@ -241,7 +241,7 @@ class Pensionado(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            print('Es sujeto de credito')
+            print(self.documento_id)
         else:
             print('No es sujeto de crédito')
 
