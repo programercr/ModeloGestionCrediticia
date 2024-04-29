@@ -16,7 +16,7 @@ while True:
 
       ''')
       tipo_empleo() 
-sys.exit()
+      sys.exit()
 
 
 
