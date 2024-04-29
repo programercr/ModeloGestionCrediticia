@@ -141,16 +141,16 @@ class Asalariado(Usuario):
         self.puesto = input("Ingrese su puesto: ")
         self.salario = self.validar_salario()
         self.antiguedadLaboral = tipo_cliente.antiguedad_laboral()
-        print('Ahora calcularemos su promedio de Ingresos')
+        print('\n\nAhora calcularemos su promedio de Ingresos')
         ingresoscliente = CalculadoraIngresos()
         ingresoscliente.registrar_ingresos()
         promedio_ingresos = ingresoscliente.calcular_promedio()
         self.ingresos = promedio_ingresos
-        print('Ahora registraremos sus deudas actuales')
+        print('\n\nAhora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
         self.nivel_Endeudamiento = self.deudas / self.ingresos
-        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
+        print(f'\nSu nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
             self.sujeto_credito = 1
@@ -194,16 +194,16 @@ class Independiente(Usuario):
     def ingresar_informacion(self):
         super().ingresar_informacion()
         self.ingresos_mensuales = self.validar_ingresos_mensuales()
-        print('Ahora calcularemos su promedio de Ingresos')
+        print('\n\nAhora calcularemos su promedio de Ingresos')
         ingresoscliente = CalculadoraIngresos()
         ingresoscliente.registrar_ingresos()
         promedio_ingresos = ingresoscliente.calcular_promedio()
         self.ingresos = promedio_ingresos
-        print('Ahora registraremos sus deudas actuales')
+        print('\n\nAhora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
         self.nivel_Endeudamiento = self.deudas / self.ingresos
-        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
+        print(f'\nSu nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
             self.sujeto_credito = 1
@@ -241,11 +241,11 @@ class Pensionado(Usuario):
     def ingresar_informacion(self):
         super().ingresar_informacion()
         self.pension = self.validar_pension()
-        print('Ahora registraremos sus deudas actuales')
+        print('\n\nAhora registraremos sus deudas actuales')
         deudascliente = Deuda()
         self.deudas = deudascliente.clasificacion_deudas()
         self.nivel_Endeudamiento = self.deudas / self.pension
-        print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
+        print(f'\nSu nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
             self.sujeto_credito = 1
