@@ -10,25 +10,29 @@ class Deuda:
                 if cantidad_deudas <= 0:
                     print("Por favor, ingresa un número válido mayor que cero.")
                 else:
-                    total_deuda = 0
-                    for i in range(1, cantidad_deudas + 1):
-                        while True:
-                            try:
-                                monto = float(input(f"Ingrese el monto de la deuda {tipo_deuda} #{i}: $ "))
-                                if monto <= 0:
-                                    print("Por favor, ingresa un monto válido mayor que cero.")
-                                else:
-                                    confirmacion = input(f"¿El monto de ${monto} es correcto? (si/no): ")
-                                    if confirmacion.lower() == "si":
-                                        total_deuda += monto
-                                        break
+                    confirmacion = input(f"Has indicado que tienes {cantidad_deudas} deudas {tipo_deuda}. ¿Es correcto? (si/no): ")
+                    if confirmacion.lower() == "si":
+                        total_deuda = 0
+                        for i in range(1, cantidad_deudas + 1):
+                            while True:
+                                try:
+                                    monto = float(input(f"Ingrese el monto de la deuda {tipo_deuda} #{i}: $ "))
+                                    if monto <= 0:
+                                        print("Por favor, ingresa un monto válido mayor que cero.")
                                     else:
-                                        print("Por favor, ingrese el monto nuevamente.")
-                            except ValueError:
-                                print("Por favor, ingresa un monto válido.")
-                    self.monto += total_deuda
-                    self.cantidad_deudas += cantidad_deudas
-                    break
+                                        confirmacion = input(f"¿El monto de ${monto} es correcto? (si/no): ")
+                                        if confirmacion.lower() == "si":
+                                            total_deuda += monto
+                                            break
+                                        else:
+                                            print("Por favor, ingrese el monto nuevamente.")
+                                except ValueError:
+                                    print("Por favor, ingresa un monto válido.")
+                        self.monto += total_deuda
+                        self.cantidad_deudas += cantidad_deudas
+                        break
+                    else:
+                        print("Por favor, ingresa nuevamente la cantidad de deudas.")
             except ValueError:
                 print("Por favor, ingresa un número válido.")
 
@@ -44,9 +48,12 @@ class Deuda:
         tiene_deudas = self.obtener_respuesta("¿Tienes deudas con financieras, prestamistas o almacenes? (si/no): ")
 
         if tiene_deudas == "si":
-            tiene_bancarias = self.obtener_respuesta("¿Tus deudas son con entidades financieras? (si/no): ")
-            if tiene_bancarias == "si":
+            tiene_deudas_financieras = self.obtener_respuesta("¿Tienes deudas con entidades financieras? (si/no): ")
+            if tiene_deudas_financieras == "si":
                 self.ingresar_deuda("con financieras")
+            else:
+                print("Debes tener al menos una deuda financiera para continuar.")
+                return 0
 
             tiene_financieras = self.obtener_respuesta("¿Tus deudas son con prestamistas? (si/no): ")
             if tiene_financieras == "si":
@@ -71,3 +78,6 @@ class Deuda:
 if __name__ == "__main__":
     deudascliente = Deuda()
     deudas = deudascliente.clasificacion_deudas()
+
+
+
