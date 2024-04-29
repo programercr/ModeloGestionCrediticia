@@ -153,9 +153,10 @@ class Asalariado(Usuario):
 
         if self.nivel_Endeudamiento <= 0.5:
             print(self.documento_id)
-            return (self.documento_id)
+            return self.documento_id
         else:
             print('No es sujeto de crédito')
+          
 
     def validar_salario(self):
         while True:
@@ -202,10 +203,11 @@ class Independiente(Usuario):
         print(f'Su nivel de endeudamiento es: {round((self.nivel_Endeudamiento * 100), 0)}%')
 
         if self.nivel_Endeudamiento <= 0.5:
-            print('Es sujeto de credito')
+            print(self.documento_id)
             return self.documento_id
         else:
             print('No es sujeto de crédito')
+           
 
     def validar_ingresos_mensuales(self):
         while True:
@@ -243,8 +245,10 @@ class Pensionado(Usuario):
 
         if self.nivel_Endeudamiento <= 0.5:
             print(self.documento_id)
+            return self.documento_id
         else:
             print('No es sujeto de crédito')
+           
 
     def validar_pension(self):
         while True:
