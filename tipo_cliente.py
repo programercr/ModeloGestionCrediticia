@@ -1,6 +1,7 @@
 from ingreso_datos_clientes import *
 from base_datos_clientes import *
 from productos_crediticios import *
+import sys
 
 
 # Crea una instancia de BaseDeDatosCSV
@@ -49,6 +50,9 @@ def tipo_empleo():
         info_usuario= analizador.productos(pensionado.documento_id)
         producto_seleccionado = analizador.elegir_producto()
         analizador.usuario_producto(info_usuario, producto_seleccionado)
+        
+    sys.exit()  # Termina la ejecución del programa
+    
 
 def antiguedad_laboral():
     print("Cuanto tiempo tiene de laborar para la compañia :")
