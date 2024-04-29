@@ -1,11 +1,9 @@
 from tipo_cliente import *
 import sys 
 
-
-
 while True:
       print('''
-      Bienvenido al sistema de gestion Crediticia
+      Bienvenido/a al sistema de gestion Crediticia
 
       Iniciaremos el registro de cliente
 
