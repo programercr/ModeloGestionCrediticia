@@ -13,3 +13,4 @@ documento_id,nombre,apellidos,fecha_nacimiento,estado_civil,provincia,correo_ele
 701709555,Luis,Alfaro,1985-01-01,Soltero/a,Limon,lal@gh.com,36529658,Independiente,,2500.0,,,,,2393.3333333333335,1340.0,0.5598885793871866
 505050508,jorge,jerez,1970-07-23,Viudo/a,san jose,john@gmail.com,80906030,Pensionado,,,1200.0,,,,,200.0,0.16666666666666666
 603050602,AyMiguel,Mora,1950-07-08,Separado/a,heredia,migue@gmail.com,70809050,Pensionado,,,1500.0,,,,,300.0,0.2
+102700878,Fabricio,Lopez,1990-07-23,Casado/a,Cartago,asdaa@gmai.com,12345678,Asalariado,1800.0,,,CR,cR,Mayor a 12 meses,1800.0,1050.0,0.5833333333333334
