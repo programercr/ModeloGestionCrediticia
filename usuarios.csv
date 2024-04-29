@@ -1,3 +1,0 @@
-documento_id,nombre,apellidos,fecha_nacimiento,estado_civil,provincia,correo_electronico,telefono,tipo_empleado,salario,ingresos_mensuales,pension,empleador,puesto,antiguedadLaboral,ingresos,deudas,nivel_Endeudamiento
-123456789,Luis,Alvarez,1986-01-01,Soltero/a,Limon,a@a.com,12345678,Asalariado,1300.0,,,apm,ba,Mayor a 12 meses,1300.0,300.0,0.23076923076923078
-987654321,Pedro,pedrales,1986-01-01,Soltero/a,limon,a@a.a,87542165,Asalariado,1300.0,,,kjjh,ujh,Mayor a 12 meses,1300.0,800.0,0.6153846153846154
