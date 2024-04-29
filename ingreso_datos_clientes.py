@@ -156,6 +156,7 @@ class Asalariado(Usuario):
             return self.documento_id
         else:
             print('No es sujeto de crédito')
+            
           
 
     def validar_salario(self):
