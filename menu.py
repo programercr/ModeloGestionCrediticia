@@ -15,6 +15,7 @@ while True:
               ''')
         a = tipo_empleo()
         print(a)
+        break
 
 
 
