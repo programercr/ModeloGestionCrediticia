@@ -15,8 +15,3 @@ while True:
       ''')
       tipo_empleo() 
       sys.exit()
-
-
-
-
-
